@@ -84,7 +84,6 @@ HVAC_MODE_SETS = {
         HVACMode.HEAT: True,
     },
     "Auto/Cold/Dry/Wind/Hot": {
-        HVACMode.HEAT: "hot",
         HVACMode.FAN_ONLY: "wind",
         HVACMode.DRY: "wet",
         HVACMode.COOL: "cold",
@@ -115,18 +114,21 @@ HVAC_ACTION_SETS = {
 }
 HVAC_FAN_MODE_SETS = {
     "Auto/Low/Middle/High/Strong": {
-        FAN_AUTO: "auto",
-        FAN_LOW: "low",
-        FAN_MEDIUM: "middle",
-        FAN_HIGH: "high",
-        FAN_TOP: "strong",
+        FAN_AUTO: "4",
+        FAN_LOW: "1",
+        FAN_MEDIUM: "2",
+        FAN_HIGH: "3",
     }
 }
 HVAC_SWING_MODE_SETS = {
     "True/False": {
         SWING_ON: True,
         SWING_OFF: False,
-    }
+    },
+    "0/1": {
+        SWING_ON: "1",
+        SWING_OFF: "0",
+    },
 }
 PRESET_SETS = {
     "Manual/Holiday/Program": {
@@ -164,6 +166,10 @@ def flow_schema(dps):
         vol.Optional(CONF_HVAC_MODE_SET): vol.In(list(HVAC_MODE_SETS.keys())),
         vol.Optional(CONF_HVAC_FAN_MODE_DP): vol.In(dps),
         vol.Optional(CONF_HVAC_FAN_MODE_SET): vol.In(list(HVAC_FAN_MODE_SETS.keys())),
+
+        vol.Optional(CONF_HVAC_SWING_MODE_DP): vol.In(dps),
+        vol.Optional(CONF_HVAC_SWING_MODE_SET): vol.In(list(HVAC_SWING_MODE_SETS.keys())),
+        
         vol.Optional(CONF_HVAC_ACTION_DP): vol.In(dps),
         vol.Optional(CONF_HVAC_ACTION_SET): vol.In(list(HVAC_ACTION_SETS.keys())),
         vol.Optional(CONF_ECO_DP): vol.In(dps),
